@@ -1,9 +1,14 @@
 
 # Project Edoba: Gymnast Design Document
 
+## Contributors
+HisDewness
+Gallowan
+mkhuluf
+
 ## **1. Overview & Vision**
 
-Gymnast is the first product in the Project Edoba suite—a counter to subscription-based services of the Adobe suite—offering high-performance opening, rendering, and navigation of PDF files across Windows and macOS, with Linux support planned.
+Gymnast is the first product in the Project Edoba product suite to counter subscription-based services of the Adobe suite—offering high-performance opening, rendering, and navigation of PDF files across Windows and macOS, with Linux support planned (tbd).
 
 ### **1.1 Mission**
 
@@ -124,7 +129,7 @@ flowchart LR
 
 ### **10.1 Adoption**
 
-- **Downloads**: 10 000 installs in first 6 months.
+- **Downloads**: 10,000 installs in first 6 months.
 
 ### **10.2 Performance Benchmarks (v1.0 vs. Adobe Acrobat DC)**
 
