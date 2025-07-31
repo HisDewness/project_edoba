@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gymnast</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; background-color: #f8f9fa; }
+    #controls { display: flex; align-items: center; padding: 8px; background-color: #343a40; color: white; }
+    #controls button { margin-right: 8px; padding: 4px 8px; font-size: 14px; }
+    #page-info { flex-grow: 1; }
+    #viewer { width: 100%; height: calc(100vh - 40px); overflow: auto; background-color: white; }
+    canvas { display: block; margin: 0 auto 16px; box-shadow: 0 0 4px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <button id="prev">Previous</button>
+    <span id="page-info">Page 0 / 0</span>
+    <button id="next">Next</button>
+  </div>
+  <div id="viewer"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    const PDF_PATH = './menu.pdf';
+    let pdfDoc = null;
+    let pageNum = 1;
+    let pageRendering = false;
+    let pageNumPending = null;
+    const scale = 1.0;
+    const viewer  = document.getElementById('viewer');
+    const pageInfo = document.getElementById('page-info');
+    function renderPage(num) {
+      pageRendering = true;
+      pdfDoc.getPage(num).then(page => {
+        const viewport = page.getViewport({ scale });
+        const canvas  = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width  = viewport.width;
+        viewer.innerHTML = '';
+        viewer.appendChild(canvas);
+        const renderContext = { canvasContext: context, viewport };
+        page.render(renderContext).promise.then(() => {
+          pageRendering = false;
+          pageInfo.textContent = `Page ${pageNum} / ${pdfDoc.numPages}`;
+          if (pageNumPending !== null) {
+            renderPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+    }
+    function queueRenderPage(num) {
+      if (pageRendering) {
+        pageNumPending = num;
+      } else {
+        renderPage(num);
+      }
+    }
+    document.getElementById('prev').addEventListener('click', () => {
+      if (pageNum <= 1) return;
+      pageNum--;
+      queueRenderPage(pageNum);
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      if (pageNum >= pdfDoc.numPages) return;
+      pageNum++;
+      queueRenderPage(pageNum);
+    });
+    pdfjsLib.getDocument(PDF_PATH).promise.then(doc => {
+      pdfDoc = doc;
+      pageInfo.textContent = `Page ${pageNum} / ${pdfDoc.numPages}`;
+      renderPage(pageNum);
+    }).catch(err => {
+      console.error('Error loading PDF:', err);
+      pageInfo.textContent = 'Failed to load PDF';
+    });
+  </script>
+</body>
+</html>

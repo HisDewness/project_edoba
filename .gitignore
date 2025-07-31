@@ -1,0 +1,189 @@
+# Gymnast PDF Viewer - Git Ignore File
+# =====================================
+
+# macOS System Files
+# ------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js Dependencies & Build Artifacts
+# ---------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Node.js Runtime & Package Manager Files
+.npm
+.yarn-integrity
+.pnp
+.pnp.js
+
+# Rust Build Artifacts
+# ---------------------
+# Cargo build directory (contains all compiled artifacts)
+src-tauri/target/
+# Cargo lock file for libraries (keep for applications)
+# src-tauri/Cargo.lock  # Keep this for applications
+**/*.rs.bk
+
+# Tauri Generated Files
+# ---------------------
+# Auto-generated schema files
+src-tauri/gen/
+# Bundle outputs (production builds)
+src-tauri/target/release/bundle/
+
+# Development Environment Files
+# ------------------------------
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE and Editor Files
+# --------------------
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDEs (IntelliJ, CLion, etc.)
+.idea/
+*.swp
+*.swo
+*~
+
+# Vim
+*.swp
+*.swo
+*.tmp
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Logs and Temporary Files
+# -------------------------
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+.grunt
+lib-cov
+.nyc_output
+.coverage/
+*.lcov
+.cache/
+
+# Runtime and Build Directories
+# ------------------------------
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vuepress/dist/
+
+# Testing
+# -------
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+
+# Backup Files
+# ------------
+*.bak
+*.backup
+*.old
+*.orig
+
+# OS Generated Files
+# ------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Application Specific
+# --------------------
+# Custom icons backup (we created these during setup)
+src-tauri/icons/*.bak
+
+# Temporary development files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Documentation builds (if using tools like mdbook)
+book/
+
+# Security and Sensitive Files
+# -----------------------------
+# API keys, certificates, secrets
+*.pem
+*.key
+*.crt
+*.cert
+secrets.json
+.secrets
+
+# Local development overrides
+local.json
+local.config.js
+
+# Package manager alternatives
+# ----------------------------
+# If team switches to yarn or pnpm
+yarn.lock
+pnpm-lock.yaml
+
+# Mobile development (future Tauri mobile support)
+# -------------------------------------------------
+# Android
+*.apk
+*.aab
+android/
+.gradle/
+
+# iOS
+*.ipa
+ios/
+*.xcodeproj
+*.xcworkspace
+
+# Tauri Mobile Generated
+src-tauri/gen/android/
+src-tauri/gen/apple/ 

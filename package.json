@@ -1,0 +1,18 @@
+{
+  "name": "gymnast",
+  "version": "0.1.0",
+  "description": "Gymnast PDF Viewer - Tauri 2.x app with static HTML frontend",
+  "main": "src/index.html",
+  "author": "HisDewness",
+  "license": "Apache-2.0",
+  "scripts": {
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.7.1"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.7.0"
+  }
+}

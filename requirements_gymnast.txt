@@ -1,0 +1,101 @@
+# Gymnast PDF Viewer - Development Environment Requirements
+# ========================================================
+# This file specifies the exact versions and dependencies needed
+# to maintain development environment parity across team workstations.
+
+# OPERATING SYSTEM REQUIREMENTS
+# ------------------------------
+# macOS 14.6.1+ (Sonoma) recommended
+# - Required for consistent Tauri app behavior and native macOS features
+# - Earlier versions may work but not tested
+
+# SYSTEM DEPENDENCIES (via Homebrew)
+# -----------------------------------
+# Install Homebrew first: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Homebrew itself
+homebrew>=4.5.0
+# - Package manager for macOS dependencies
+# - Install with: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# RUST TOOLCHAIN
+# --------------
+# Install via rustup: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustc==1.88.0
+cargo==1.88.0
+rustup>=1.28.0
+# - Rust stable toolchain required for Tauri 2.x
+# - Install with: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# - Ensure ~/.cargo/bin is in your PATH
+
+# NODE.JS ECOSYSTEM
+# -----------------
+node>=24.4.0
+npm>=11.4.0
+# - LTS version recommended for stability
+# - Install via: brew install node
+# - Alternative: use nvm for version management
+
+# TAURI DEVELOPMENT TOOLS
+# -----------------------
+@tauri-apps/cli==2.7.1
+# - Tauri CLI for development and building
+# - Install globally: npm install -g @tauri-apps/cli@2.7.1
+# - Or use npx for project-local execution
+
+# XCODE COMMAND LINE TOOLS
+# -------------------------
+# xcode-select version 2408+
+# - Required for native compilation on macOS
+# - Install with: xcode-select --install
+# - Verify with: xcode-select --version
+
+# TAURI RUST DEPENDENCIES (automatically managed by Cargo)
+# --------------------------------------------------------
+# These are specified in src-tauri/Cargo.toml and installed automatically:
+# - tauri = "2"
+# - tauri-build = "2"
+# - tauri-plugin-* = "2" (various plugins)
+
+# FRONTEND DEPENDENCIES (automatically managed by npm)
+# ---------------------------------------------------
+# These are specified in package.json and installed with npm install:
+# - @tauri-apps/api = "^2.7.0"
+
+# TEAM SETUP CHECKLIST
+# ---------------------
+# 1. Install Homebrew (if not already installed)
+# 2. Install Rust toolchain via rustup
+# 3. Install Node.js via Homebrew: brew install node
+# 4. Install Xcode Command Line Tools: xcode-select --install
+# 5. Clone the project repository
+# 6. Run: npm install (installs @tauri-apps/cli and @tauri-apps/api)
+# 7. Verify setup: npx tauri info
+# 8. Start development: npx tauri dev
+
+# OPTIONAL DEVELOPMENT TOOLS
+# ---------------------------
+# Visual Studio Code with extensions:
+# - rust-analyzer (Rust language support)
+# - Tauri (Tauri-specific features)
+# - ES6 String HTML (for template literals)
+
+# TROUBLESHOOTING NOTES
+# ---------------------
+# - If build fails with icon errors, ensure src-tauri/icons/icon.png exists and is RGBA format
+# - If permission errors occur, check src-tauri/capabilities/ directory for proper capability files
+# - For M1/M2 Macs, ensure all tools are ARM64 compatible (modern versions should be)
+# - If Rust compilation is slow, consider increasing build parallelism: export CARGO_BUILD_JOBS=8
+
+# PROJECT-SPECIFIC NOTES
+# ----------------------
+# - This project uses Tauri 2.x (major version upgrade from 1.x)
+# - Static HTML frontend (no framework dependencies)
+# - PDF viewing capabilities will be implemented
+# - Target platforms: macOS (primary), with potential for cross-platform expansion
+
+# RUNNING THE DAMN APP
+# ------------------------------
+# Development: npx tauri dev
+# Production build: npx tauri build
+# Environment check: npx tauri info

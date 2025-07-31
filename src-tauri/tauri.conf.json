@@ -1,0 +1,30 @@
+{
+  "identifier": "com.project_edoba.gymnast",
+  "productName": "Gymnast",
+  "mainBinaryName": "Gymnast",
+  "version": "0.1.0",
+  "bundle": {
+    "targets": ["dmg", "app"],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": ""
+    }
+  },
+  "plugins": {},
+  "app": {
+    "windows": [
+      {
+        "title": "Gymnast",
+        "width": 800,
+        "height": 600,
+        "useHttpsScheme": true
+      }
+    ]
+  },
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "frontendDist": "../src"
+  }
+}
